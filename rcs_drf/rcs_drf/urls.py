@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path("api/token/", TokenObtainPairView.as_view(), name="token"),  # если логин и пароль верен, то отправляется JSON токен
+    path("api/refresh_token/", TokenRefreshView.as_view(), name="refresh_token"),  # отвечает за обновление токена, как только он истечет (согласно настройкам SIMPLE_JWT в siting.py)
+    path("ckeditor/", include('ckeditor_uploader.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
