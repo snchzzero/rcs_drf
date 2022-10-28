@@ -42,24 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'DRF',
-    'ckeditor',
-    'ckeditor_uploader',
-    'taggit',
-    'taggit_serializer',
+    'rest_framework',  # для работы с rest_framework
+    'DRF',  # DRF (наше приложение)
+    'ckeditor',  # редактор кода
+    'ckeditor_uploader',  # редактор кода
+    'taggit',  # работа с тегами
+    'taggit_serializer',  # работа с тегами
 ]
 
-# 'DRF',   # DRF
-#     'ckeditor',  # редактор кода
-#     'ckeditor_uploader',  # редактор кода
-#     'taggit',  # работа с тегами
-#     'taggit_serializer',  # работа с тегами
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # для работы с rest_framework
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
