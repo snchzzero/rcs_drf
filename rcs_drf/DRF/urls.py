@@ -1,12 +1,16 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import AlbumViewSet
+from . import views
 
 app_name = 'DRF'
 
-router = DefaultRouter()
-router.register('posts', AlbumViewSet, basename='posts')
+# router = DefaultRouter()
+# router.register('posts', TrackSeializer, basename='posts')
+#
+# urlpatterns = [
+#     path('', include(router.urls))
+# ]
 
 urlpatterns = [
-    path('', include(router.urls))
+    path("album", views.AlbumkView.as_view())
 ]

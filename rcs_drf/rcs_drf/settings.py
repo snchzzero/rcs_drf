@@ -44,17 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',  # для работы с rest_framework
     'DRF',  # DRF (наше приложение)
-    'ckeditor',  # редактор кода
-    'ckeditor_uploader',  # редактор кода
-    'taggit',  # работа с тегами
-    'taggit_serializer',  # работа с тегами
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # для работы с rest_framework
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,24 +75,14 @@ TEMPLATES = [
     },
 ]
 
-# настройки JWT токена для DRF
-LOGIN_URL = "/api/v1/signin"
-
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
-}
-
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000", "http://127.0.0.1:3000"]
-# конец настроек JWT токена для DRF
 
 #настройки rest framework
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework_simplejwt.authentication.JWTAuthentication"],
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.DjangoModelPermissions",),
-}
+# REST_FRAMEWORK = {
+#     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework_simplejwt.authentication.JWTAuthentication"],
+#     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+#     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+#     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated',]
+# }
 
 
 WSGI_APPLICATION = 'rcs_drf.wsgi.application'
