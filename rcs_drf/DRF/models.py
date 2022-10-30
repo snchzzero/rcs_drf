@@ -13,9 +13,9 @@ class Album(models.Model):
     year = models.IntegerField(blank=True,
                                validators=[MinValueValidator(1700), MaxValueValidator(2030)])
     #track = models.ManyToManyField(Track)
-    name_y = f'{year} {artist}'
-    def name_year(self):
-        name_year_str = f'{self.year} {self.artist}'
+    #name_y = f'{year} {artist}'
+    def album(self):
+        name_year_str = f'{self.artist}[{self.year}]'
         return name_year_str
 
 

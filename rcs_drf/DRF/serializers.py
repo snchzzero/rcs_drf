@@ -30,7 +30,7 @@ class AlbumSeializer(serializers.ModelSerializer):
     #print(tracks.data)
     class Meta:
         model = Album
-        fields = ['name', 'year', 'artist', 'tracks']
+        fields = ['album', 'name', 'artist', 'tracks']
         #depth = 1
         #fields = '__all__'
 
@@ -39,7 +39,13 @@ def encode():
 
     album = Album.objects.all()
     for al in album:
-        print(al.name_year)
+        a = al.album
+        print(a)
+        print(Album.album(al))
+        #b = al.name_y
+        #print (b)
+        print(al.name)
+        print(al.year)
     serializer = AlbumSeializer(album, many=True)
     serializer2 = TrackSeializer(Track.objects.all(),  many=True)
 

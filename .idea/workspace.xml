@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8346f0aa-2b98-429f-bd3d-ba13a87c7246" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rcs_drf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rcs_drf.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0002_alter_track_options_remove_album_artist_track_order_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0003_alter_track_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0004_alter_track_album.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0005_alter_track_album.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0006_track_draft.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0007_alter_track_album.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0008_alter_track_options_alter_track_unique_together.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0009_remove_track_draft.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0010_artist_album_artist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0011_remove_track_order_alter_artist_name.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0012_alter_track_options_track_order_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0013_alter_track_options_alter_track_unique_together_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0014_alter_track_options_track_order_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/migrations/0015_alter_track_options_alter_track_unique_together_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rcs_drf/DRF/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/rcs_drf/DRF/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/DRF/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rcs_drf/DRF/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rcs_drf/db.sqlite3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +135,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rcs_drf/DRF/serializers.py</url>
-          <line>50</line>
+          <line>56</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
