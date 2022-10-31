@@ -34,6 +34,10 @@ class AlbumkView(APIView):
         serializer_data = sorted(
             serializer.data, key=lambda k: k['artist'], reverse=False)  # сортировка по полю
         #return Response(serializer_data)
+        print('++++++++++++++++++++++++')
+        for data in serializer_data:
+            print(data)
+            print()
         return render(request, 'DRF/home.html', {'serializer_data': serializer_data})
 
     def post(self, request):
