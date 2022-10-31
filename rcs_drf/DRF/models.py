@@ -15,21 +15,25 @@ class Album(models.Model):
     #track = models.ManyToManyField(Track)
     #name_y = f'{year} {artist}'
     def album(self):
-        name_year_str = f'{self.artist}[{self.year}]'
+        name_year_str = f'{self.name}[{self.year}]'
         return name_year_str
 
 
     def __str__(self):
         return self.name
 
+    # class Meta:
+    #     ordering = ['name']
+
+
 
 class Track(models.Model):
     name = models.CharField(max_length=200)
     album = models.ForeignKey(Album, related_name='tracks', on_delete=models.PROTECT, null=True)  # для связей Many to One
 
-    class Meta:
-        #unique_together = ['album']
-        ordering = ['album']
+    # class Meta:
+    #     #unique_together = ['album']
+    #     ordering = ['album']
 
     def __str__(self):
         return self.name

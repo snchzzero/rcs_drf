@@ -1,7 +1,23 @@
 from rest_framework import serializers
-from DRF.models import Album, Track
+from DRF.models import Album, Track, Artist
 import rcs_drf.settings
-#from .models import Album, Track
+#from .models import Album, Track, Artist
+
+class NewArtistSeializer(serializers.ModelSerializer):
+    artist = serializers.SlugRelatedField(slug_field="name", read_only=True, many=False)
+    class Meta:
+        model = Album
+        fields = ['album', 'name', 'artist']
+
+class NewAlbumSeializer(serializers.ModelSerializer):
+    artist = serializers.SlugRelatedField(slug_field="name", read_only=True, many=False)
+    class Meta:
+        model = Album
+        fields = ['name', 'artist', 'year']
+
+
+
+
 
 class TrackSeializer(serializers.ModelSerializer):
     album = serializers.SlugRelatedField(slug_field="name", read_only=True, many=False)
@@ -9,13 +25,6 @@ class TrackSeializer(serializers.ModelSerializer):
         model = Track
         #fields = '__all__'
         fields = ['album', 'name']
-        #depth = 1
-
-# class RecursiveSerializer(serializers.Serializer):
-#     """Вывод рекурсивно children"""
-#     def to_representation(self, value):
-#         serializer = self.parent.parent.__class__(value, context=self.context)
-#         return serializer.data
 
 
 class AlbumSeializer(serializers.ModelSerializer):
@@ -25,7 +34,7 @@ class AlbumSeializer(serializers.ModelSerializer):
 
     #ser = Track.all()
     print('Тут должны быть треки:')
-    print(tracks, type(tracks), sep='\n')
+    #print(tracks, type(tracks), sep='\n')
     print('___________')
     #print(tracks.data)
     class Meta:
@@ -60,15 +69,6 @@ encode()
 #from DRF.serializers import encode
 #encode()
 #quit()
-
-# [
-#     OrderedDict([('name', 'Another Brick In The Wall'), ('album', 'The erly years')]),
-#     OrderedDict([('name', 'Comfortably Numb'), ('album', 'The Wall')]),
-#     OrderedDict([('name', 'In the flesh'), ('album', 'The Wall')]),
-#     OrderedDict([('name', 'Business'), ('album', 'The Eminem Show')]),
-#     OrderedDict([('name', 'America'), ('album', 'The Eminem Show')])]
-# [OrderedDict([('name', 'The erly years'), ('artist', 'Pink Floyd')]), OrderedDict([('name', 'The Wall'), ('artist', 'Pink Floyd')]), OrderedDict([('name', 'The Eminem Show'), ('artist', '
-# Eminem')])]
 
 
 

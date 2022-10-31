@@ -12,5 +12,8 @@ app_name = 'DRF'
 # ]
 
 urlpatterns = [
-    path("album", views.AlbumkView.as_view())
+    path("album", views.AlbumkView.as_view()),
+    path("new_artist", views.NewArtistView.as_view()),
+    path("new_album", views.NewAlbumView.as_view()),
+    path("new_track", views.NewTrackView.as_view())
 ]
