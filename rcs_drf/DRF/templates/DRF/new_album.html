@@ -1,0 +1,42 @@
+{% extends 'DRF/base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h3>Новый Альбом</h3>
+        <form method="POST">
+           {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Название Альбома</label>
+                <input type="text" name="name"
+                   class="form-control" id="name" required>
+            </div>
+            </br>
+            {% if CurrentArtists %}
+                <label for="artist">Артист</label>
+                    <select class="form-control form-control-sm" name="artist" id="artist">
+                        {% for CurrentArtist in CurrentArtists %}
+                            <option>{{ CurrentArtist.name }}</option>
+                        {% endfor %}
+                    </select>
+            {% endif %}
+
+            </br>
+            <div class="form-group">
+                <label for="year">год</label>
+                <input type="text" name="year"
+                   class="form-control" id="year" required>
+            </div>
+            </br>
+
+            </br>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            </br>
+            </br>
+            <p class="text-center fs-5 text-success"> {{ message }} </p>
+        </form>
+    </div>
+
+
+
+</div>
+{% endblock %}

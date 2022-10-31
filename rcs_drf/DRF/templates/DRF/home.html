@@ -1,45 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'DRF/base.html' %}
+{% block content %}
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<form class="col" method="POST" action="">
+    {% csrf_token %}
+    <div class="container justify-content-center">
+        <table class="table table-dark table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-center">album </th>
+                    <th scope="col" class="text-center">name</th>
+                    <th scope="col" class="text-center">artist@name</th>
+                    <th scope="col" class="text-center">tracks</th>
+                </tr>
+                <tbody>
+                    {% for data in serializer_data %}
+                        <tr>
+                            <td class="text-center">{{ data.album }}</td>
+                            <td class="text-center">{{ data.name }}</td>
+                            <td class="text-center">{{ data.artist }}</td>
+                            <td class="text-center">
+                                {% for dat in data.tracks %}
+                                   {{ dat }} <br>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </thead>
+        </table>
+    </div>
 
-        <title>Music</title>
-    </head>
+</form>
 
-</head>
-
-<body>
-<div class="container">
-    <form class="col" method="POST" action="">
-        {% csrf_token %}
-        <div class="container justify-content-center">
-            <table class="table table-dark table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" class="text-center">album </th>
-                        <th scope="col" class="text-center">name</th>
-                        <th scope="col" class="text-center">artist@name</th>
-                        <th scope="col" class="text-center">tracks</th>
-                    </tr>
-                    <tbody>
-                        {% for data in serializer_data %}
-
-                        {% endfor %}
-                    </tbody>
-                </thead>
-            </table>
-        </div>
-
-    </form>
-</div>
-
-
-
-</body>
-
-</html>
+{% endblock %}

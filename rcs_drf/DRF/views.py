@@ -38,6 +38,8 @@ class AlbumkView(APIView):
         for data in serializer_data:
             print(data)
             print()
+            print(data['album'])
+            print()
         return render(request, 'DRF/home.html', {'serializer_data': serializer_data})
 
     def post(self, request):
@@ -45,18 +47,33 @@ class AlbumkView(APIView):
         serializer = AlbumSeializer(album, many=True)
         serializer_data = sorted(
             serializer.data, key=lambda k: k[request.data['sorted']], reverse=False)  # сортировка по полю
-        return Response({'post': serializer_data})
+        #return Response({'post': serializer_data})  # для просмотра отправленного json запроса
+        return render(request, 'DRF/home.html', {'serializer_data': serializer_data})
+
 
 class NewArtistView(APIView):
+    def get(self, request):
+        return render(request, 'DRF/new_artist.html')
+
     def post(self, request):
         new_artist = Artist.objects.create(
-            name=request.data['artist']
+            name=request.data['name']
         )
-        return Response({'post': NewArtistSeializer(new_artist).data})
+        #return Response({'post': NewArtistSeializer(new_artist).data})  # для просмотра отправленного json запроса
+
+        message = "новый артист успешно добавлен"
+        return render(request, 'DRF/new_artist.html', {'message': message})
+
+
+
 
 class NewAlbumView(APIView):
+    def get(self, request):
+        CurrentArtists = Artist.objects.all()
+        return render(request, 'DRF/new_album.html', {'CurrentArtists': CurrentArtists})
 
     def post(self, request):
+        CurrentArtists = Artist.objects.all()
         serializer = NewAlbumSeializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         ArtistId = ArtistID_to_Artists(request.data['artist'])
@@ -66,13 +83,20 @@ class NewAlbumView(APIView):
                 artist=ArtistId,
                 year=request.data['year']
             )
-            return Response({'post': NewAlbumSeializer(new_album).data})
+            #return Response({'post': NewAlbumSeializer(new_album).data})  # для просмотра отправленного json запроса
+            message = "новый альбом успешно добавлен"
+            return render(request, 'DRF/new_album.html', {'CurrentArtists': CurrentArtists, 'message': message})
         else:
             print('Ошибка ввода')
             print('Добавить страницу с ошибкой')
 
 class NewTrackView(APIView):
+    def get(self, request):
+        CurrentAlbums = Album.objects.all()
+        return render(request, 'DRF/new_track.html', {'CurrentAlbums': CurrentAlbums})
+
     def post(self, request):
+        CurrentAlbums = Album.objects.all()
         serializer = TrackSeializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         AlbumId = AlbumId_to_Albums(request.data['album'])
@@ -81,7 +105,9 @@ class NewTrackView(APIView):
                 name=request.data['name'],
                 album=AlbumId
             )
-            return Response({'post': TrackSeializer(new_track).data})
+            #return Response({'post': TrackSeializer(new_track).data})  # для просмотра отправленного json запроса
+            message = "новый трек успешно добавлен"
+            return render(request, 'DRF/new_track.html', {'CurrentAlbums': CurrentAlbums, 'message': message})
         else:
             print('Ошибка ввода')
             print('Добавить страницу с ошибкой')
