@@ -18,8 +18,10 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
+from DRF.views import AlbumkView
 
 urlpatterns = [
+    path("", AlbumkView.as_view()),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     #path("api/token/", TokenObtainPairView.as_view(), name="token"),  # если логин и пароль верен, то отправляется JSON токен
