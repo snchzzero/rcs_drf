@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  web:
+    restart: always
+    build: .
+    command: python /usr/src/rcs_drf/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/rcs_drf
+    ports:
+      - 8000:8000

@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
-from DRF.views import AlbumkView
+from DRF.views import AlbumView
 
 urlpatterns = [
-    path("", AlbumkView.as_view()),
+    path("", AlbumView.as_view()),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path("api/", include('DRF.urls')),
