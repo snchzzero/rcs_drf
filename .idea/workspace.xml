@@ -4,6 +4,7 @@
     <list default="true" id="8346f0aa-2b98-429f-bd3d-ba13a87c7246" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rcs_drf/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rcs_drf/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +42,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\Python_other\rcs_drf\images" />
       <recent name="D:\Project\Python_other\rcs_drf" />
       <recent name="C:\Users\Max\Desktop\rcs_drf\rcs_drf" />
     </key>
