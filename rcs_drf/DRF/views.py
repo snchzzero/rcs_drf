@@ -30,9 +30,9 @@ class AlbumView(APIView):
         tracks = Track.objects.all()  # для привязки ссылки на трек
         artists = Artist.objects.all()
         albums = Album.objects.all()
-        return Response({'post': serializer_data})  # для просмотра отправленного json запроса
-        # return render(request, 'DRF/home.html', {'serializer_data': serializer_data, 'tracks': tracks,
-        #                                          'artists': artists, 'albums': albums})
+        #return Response({'post': serializer_data})  # для просмотра отправленного json запроса
+        return render(request, 'DRF/home.html', {'serializer_data': serializer_data, 'tracks': tracks,
+                                                  'artists': artists, 'albums': albums})
 
     def post(self, request):
         album = Album.objects.all()
