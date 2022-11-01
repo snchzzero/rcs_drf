@@ -15,10 +15,12 @@
 
 <body>
     <div class="container">
-        <br>
 
-        <div class="row text-center">
-            <form class="col-2 d-flex align-self-center" method="GET" action="{% url 'DRF:ShowAlbum' %}">
+        <br>
+        <div class="d-flex justify-content-around">
+        <div class="row">
+
+            <form class="col d-flex align-self-center" method="GET" action="{% url 'DRF:ShowAlbum' %}">
                 <button class="btn btn-secondary"
                         type="submit"
                         value="analysis">Моя музыка
@@ -26,14 +28,14 @@
 
             </form>
 
-            <form class="col-2 d-flex align-self-center" method="GET" action="{% url 'DRF:NewArtist' %}">
+            <form class="col d-flex align-self-center" method="GET" action="{% url 'DRF:NewArtist' %}">
                 <button class="btn btn-success"
                         type="submit"
                         value="analysis">Добавить Артиста
                 </button>
 
             </form>
-            <form class="col-2 d-flex align-self-center" method="GET" action="{% url 'DRF:NewAlbum' %}">
+            <form class="col d-flex align-self-center" method="GET" action="{% url 'DRF:NewAlbum' %}">
                 <button class="btn btn-success"
                         type="submit"
                         value="analysis">Добавить Альбом
@@ -41,7 +43,7 @@
 
             </form>
 
-            <form class="col-2 d-flex align-self-center" method="GET" action="{% url 'DRF:NewTrack' %}">
+            <form class="col d-flex align-self-center" method="GET" action="{% url 'DRF:NewTrack' %}">
                 <button class="btn btn-success"
                         type="submit"
                         value="analysis">Добавить Трек
@@ -50,13 +52,13 @@
 
             {% if serializer_data %}
             <form class="col-4 d-flex justify-content-center align-items-center" method="POST" action="{% url 'DRF:ShowAlbum' %}">
-                <div class="col-5">
+                <div class="col-6">
                     <button class="btn btn-primary"
                             type="submit"
                             value="analysis">Сортировать по:
                     </button>
                 </div>
-                <div class="col-4">
+                <div class="col-4 mx-2">
                     <select class="form-control form-control" name="sorted"
                                     id="sorted">
                         <option class="text-center">name</option>
@@ -65,10 +67,11 @@
                 </div>
             </form>
             {% endif %}
-
+            </div>
         </div>
-
         <br>
+
+
         {% block content %} {% endblock %}
 
     </div>

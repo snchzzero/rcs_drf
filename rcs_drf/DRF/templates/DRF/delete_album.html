@@ -1,0 +1,25 @@
+{% extends 'DRF/base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h3>Удалить Альбом</h3>
+        <form method="POST" action="{% url 'DRF:DeleteAlbum' %}">
+           {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Название Альбома</label>
+                <input type="text" name="name"
+                   class="form-control"  value="{{ Album }}" id="name" required>
+
+            </div>
+            </br>
+
+            </br>
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            </br>
+            </br>
+            <p class="text-center fs-5 text-success"> {{ message }} </p>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

@@ -30,9 +30,7 @@ class AlbumkView(APIView):
         #serializer = encode()
         print('*************************')
         print(serializer.data)
-
-        serializer_data = sorted(
-            serializer.data, key=lambda k: k['artist'], reverse=False)  # сортировка по полю
+        serializer_data = serializer.data
         #return Response(serializer_data)
         print('++++++++++++++++++++++++')
         for data in serializer_data:
@@ -40,15 +38,24 @@ class AlbumkView(APIView):
             print()
             print(data['album'])
             print()
-        return render(request, 'DRF/home.html', {'serializer_data': serializer_data})
+        tracks = Track.objects.all()  # для привязки ссылки на трек
+        artists = Artist.objects.all()
+        albums = Album.objects.all()
+        return render(request, 'DRF/home.html', {'serializer_data': serializer_data, 'tracks': tracks,
+                                                 'artists': artists, 'albums': albums})
 
     def post(self, request):
         album = Album.objects.all()
+
         serializer = AlbumSeializer(album, many=True)
         serializer_data = sorted(
             serializer.data, key=lambda k: k[request.data['sorted']], reverse=False)  # сортировка по полю
         #return Response({'post': serializer_data})  # для просмотра отправленного json запроса
-        return render(request, 'DRF/home.html', {'serializer_data': serializer_data})
+        tracks = Track.objects.all()  # для привязки ссылки на трек
+        artists = Artist.objects.all()
+        albums = Album.objects.all()
+        return render(request, 'DRF/home.html', {'serializer_data': serializer_data, 'tracks': tracks,
+                                                 'artists': artists, 'albums': albums})
 
 
 class NewArtistView(APIView):
@@ -63,8 +70,6 @@ class NewArtistView(APIView):
 
         message = "новый артист успешно добавлен"
         return render(request, 'DRF/new_artist.html', {'message': message})
-
-
 
 
 class NewAlbumView(APIView):
@@ -112,3 +117,43 @@ class NewTrackView(APIView):
             print('Ошибка ввода')
             print('Добавить страницу с ошибкой')
 
+def ShowTrackView(request, track_pk):
+    track_name = Track.objects.get(id=track_pk)  # получить объект по id
+
+    if request.method == 'GET':
+        return render(request, 'DRF/delete_track.html', {'Track': track_name})
+
+class DeleteTrack(APIView):
+    def post(self, request):
+        track = Track.objects.get(name=request.data['name'])
+        track.delete()
+        message = "трек успешно удален"
+        return render(request, 'DRF/delete_track.html', {'message': message})
+
+
+def ShowArtistView(request, artist_pk):
+    artist_name = Artist.objects.get(id=artist_pk)  # получить объект по id
+
+    if request.method == 'GET':
+        return render(request, 'DRF/delete_artist.html', {'Artist': artist_name})
+
+class DeleteArtist(APIView):
+    def post(self, request):
+        artist = Artist.objects.get(name=request.data['name'])
+        artist.delete()
+        message = "артист успешно удален"
+        return render(request, 'DRF/delete_artist.html', {'message': message})
+
+
+def ShowAlbumView(request, album_pk):
+    album_name = Album.objects.get(id=album_pk)  # получить объект по id
+
+    if request.method == 'GET':
+        return render(request, 'DRF/delete_album.html', {'Album': album_name})
+
+class DeleteAlbum(APIView):
+    def post(self, request):
+        album = Album.objects.get(name=request.data['name'])
+        album.delete()
+        message = "альбом успешно удален"
+        return render(request, 'DRF/delete_album.html', {'message': message})

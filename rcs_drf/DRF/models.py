@@ -9,7 +9,7 @@ class Artist(models.Model):
 
 class Album(models.Model):
     name = models.CharField(max_length=200)
-    artist = models.ForeignKey(Artist, on_delete=models.PROTECT, null=True)  # для связей Many to One
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)  # для связей Many to One
     year = models.IntegerField(blank=True,
                                validators=[MinValueValidator(1700), MaxValueValidator(2030)])
     #track = models.ManyToManyField(Track)
@@ -29,7 +29,7 @@ class Album(models.Model):
 
 class Track(models.Model):
     name = models.CharField(max_length=200)
-    album = models.ForeignKey(Album, related_name='tracks', on_delete=models.PROTECT, null=True)  # для связей Many to One
+    album = models.ForeignKey(Album, related_name='tracks', on_delete=models.CASCADE, null=True)  # для связей Many to One
 
     # class Meta:
     #     #unique_together = ['album']

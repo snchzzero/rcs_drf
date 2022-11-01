@@ -1,7 +1,7 @@
 {% extends 'DRF/base.html' %}
 {% block content %}
 
-<form class="col" method="POST" action="">
+<form class="col" method="GET" action="">
     {% csrf_token %}
     <div class="container justify-content-center">
         <table class="table table-dark table-striped">
@@ -15,12 +15,39 @@
                 <tbody>
                     {% for data in serializer_data %}
                         <tr>
+
                             <td class="text-center">{{ data.album }}</td>
-                            <td class="text-center">{{ data.name }}</td>
-                            <td class="text-center">{{ data.artist }}</td>
+
+                            <td class="text-center">
+                                {% for alb in albums %}
+                                    {% if data.name == alb.name %}
+                                <a href="{% url 'DRF:ShowAlbum' alb.id %}"
+                                   class="link-secondary"
+                                   style="text-decoration: none; "> {{ data.name }} </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+
+                            <td class="text-center">
+                                {% for art in artists %}
+                                    {% if data.artist == art.name %}
+                                         <a href="{% url 'DRF:ShowArtist' art.id %}"
+                                            class="link-secondary"
+                                            style="text-decoration: none; "> {{ data.artist }} </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+
                             <td class="text-center">
                                 {% for dat in data.tracks %}
-                                   {{ dat }} <br>
+                                    {% for track in tracks %}
+                                        {% if dat == track.name %}
+                                            <a href="{% url 'DRF:ShowTrack' track.id %}"
+                                               class="link-secondary"
+                                               style="text-decoration: none; "> {{ dat }} </a>
+                                            <br>
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endfor %}
                             </td>
                         </tr>
