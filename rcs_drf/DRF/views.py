@@ -1,10 +1,9 @@
-from django.db.migrations import serializer
 from django.shortcuts import render
-from rest_framework import viewsets
 from rest_framework.views import APIView
-from .serializers import AlbumSeializer, TrackSeializer, NewArtistSeializer, NewAlbumSeializer
+from .serializers import AlbumSeializer, TrackSeializer, NewAlbumSeializer, NewArtistSeializer
 from .models import Album, Track, Artist
 from rest_framework.response import Response
+
 
 def ArtistID_to_Artists(ArtistString):
     artists = Artist.objects.all()
@@ -27,17 +26,7 @@ class AlbumkView(APIView):
     def get(self, request):
         album = Album.objects.all()
         serializer = AlbumSeializer(album, many=True)
-        #serializer = encode()
-        print('*************************')
-        print(serializer.data)
         serializer_data = serializer.data
-        #return Response(serializer_data)
-        print('++++++++++++++++++++++++')
-        for data in serializer_data:
-            print(data)
-            print()
-            print(data['album'])
-            print()
         tracks = Track.objects.all()  # для привязки ссылки на трек
         artists = Artist.objects.all()
         albums = Album.objects.all()
@@ -83,7 +72,7 @@ class NewAlbumView(APIView):
         serializer.is_valid(raise_exception=True)
         ArtistId = ArtistID_to_Artists(request.data['artist'])
         if ArtistId:
-            new_album = Album.objects.create(
+            Album.objects.create(
                 name=request.data['name'],
                 artist=ArtistId,
                 year=request.data['year']
@@ -106,7 +95,7 @@ class NewTrackView(APIView):
         serializer.is_valid(raise_exception=True)
         AlbumId = AlbumId_to_Albums(request.data['album'])
         if AlbumId:
-            new_track = Track.objects.create(
+            Track.objects.create(
                 name=request.data['name'],
                 album=AlbumId
             )
@@ -121,11 +110,11 @@ def ShowTrackView(request, track_pk):
     track_name = Track.objects.get(id=track_pk)  # получить объект по id
 
     if request.method == 'GET':
-        return render(request, 'DRF/delete_track.html', {'Track': track_name})
+        return render(request, 'DRF/delete_track.html', {'Track': track_name, 'track_pk': track_pk})
 
 class DeleteTrack(APIView):
     def post(self, request):
-        track = Track.objects.get(name=request.data['name'])
+        track = Track.objects.get(name=request.data['name'], id=request.data['id'])
         track.delete()
         message = "трек успешно удален"
         return render(request, 'DRF/delete_track.html', {'message': message})

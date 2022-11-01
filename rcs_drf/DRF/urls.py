@@ -1,15 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
+
 from . import views
 
 app_name = 'DRF'
-
-# router = DefaultRouter()
-# router.register('posts', TrackSeializer, basename='posts')
-#
-# urlpatterns = [
-#     path('', include(router.urls))
-# ]
 
 urlpatterns = [
     path("album", views.AlbumkView.as_view(), name='ShowAlbum'),
@@ -25,8 +18,5 @@ urlpatterns = [
     path("delete_artist", views.DeleteArtist.as_view(), name='DeleteArtist'),
 
     path("delete/album/<int:album_pk>", views.ShowAlbumView, name='ShowAlbum'),
-    path("delete_album", views.DeleteAlbum.as_view(), name='DeleteAlbum'),
-
-
-
+    path("delete_album", views.DeleteAlbum.as_view(), name='DeleteAlbum')
 ]

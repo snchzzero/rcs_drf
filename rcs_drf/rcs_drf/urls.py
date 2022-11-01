@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
 from DRF.views import AlbumkView
@@ -24,9 +23,6 @@ urlpatterns = [
     path("", AlbumkView.as_view()),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    #path("api/token/", TokenObtainPairView.as_view(), name="token"),  # если логин и пароль верен, то отправляется JSON токен
-    #path("api/refresh_token/", TokenRefreshView.as_view(), name="refresh_token"),  # отвечает за обновление токена, как только он истечет (согласно настройкам SIMPLE_JWT в siting.py)
-    #path("ckeditor/", include('ckeditor_uploader.urls')),
     path("api/", include('DRF.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
